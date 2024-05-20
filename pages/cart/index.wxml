@@ -1,0 +1,58 @@
+<wxs src="../../utils/tools.wxs" module="tools"></wxs>
+<checkbox-group bindchange="itemChange">
+  <view class="flex align-center bg-white solid-bottom padding" wx:key="key" wx:for="{{carts}}" wx:for-index="key"  wx:for-item="item">
+    <checkbox class="round sm orange" checked="{{item.check}}" value="{{item.id}}"></checkbox>
+    <view class="flex flex-sub">
+      <image class="product-img margin-left" src="{{item.pic}}?imageView2"></image>
+      <view class="margin-left-sm flex-sub flex flex-direction justify-between">
+        <view class="product-title">{{item.title}}</view>
+        <view class="flex margin-top-xs">
+          <view class="flex-sub text-orange">¥{{tools.showPrice(item.price)}}</view>
+          <view class="flex align-center text-xl radius-xl">
+            <text class="cuIcon-move bg-gray {{item.num>1?'':'text-grey'}}" bind:tap="{{item.num>1?'numChange':''}}" data-id="{{item.id}}" data-num="-1" ></text>
+            <view class="buy-num bg-gray margin-lr-xs">{{item.num}}</view>
+            <text class="cuIcon-add bg-gray" bind:tap="numChange" data-id="{{item.id}}" data-num="1"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="margin-left text-xl text-bold">
+      <view class="text-red cuIcon-delete" bind:tap="remove" data-id="{{key}}"></view>
+    </view>
+  </view>
+</checkbox-group>
+<view class="padding-xs flex align-center" wx:if="{{length==0}}">
+  <view class="flex-sub text-center">
+    <view class="text-xsl padding">
+      <text class="cuIcon-info text-gray"></text>
+    </view>
+    <view class="padding">购物车空空如也</view>
+  </view>
+</view>
+
+
+<view class="balance-box bg-white flex padding align-center">
+  <lable class="flex align-center">
+    <view class="check-all text-lg round {{checkAll?'bg-orange':'solids'}}" bind:tap="checkAll">
+      <text class="cuIcon-check" wx:if="{{checkAll}}"></text>
+    </view>
+    <text class="margin-left-xs">全选</text>
+  </lable>
+  <view class="flex-sub text-bold margin-left">总计:<text class="text-orange">{{tools.showPrice(sumPrice)}}</text></view>
+  <view class="cu-btn round padding-lr-xl bg-red" data-url="/pages/order/cart-confirm" bind:tap="{{sumPrice>0?'toUrl':'showToast'}}" data-msg="您还没选择商品哦" >去结算</view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tabBar selected="1"></tabBar>

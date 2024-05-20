@@ -1,0 +1,32 @@
+<view class="cu-bar bg-white search">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="搜索" confirm-type="search" bindconfirm="search"></input>
+  </view>
+</view>
+
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation>
+  <view class="cu-item {{index==tabIndex?'text-green cur':''}}" wx:for="{{categories}}" wx:key="index" bindtap="tabSelect" data-index="{{index}}">
+    {{item.title}}
+  </view>
+</scroll-view>
+<view class="grid col-2" wx:for="{{products}}" wx:key="index" wx:for-item="items" wx:if="{{index==tabIndex}}">
+  <view class="padding radius-xl" wx:for="{{items}}" wx:key="item">
+    <view class="product-item bg-white">
+      <image mode="heightFix" class="product-pic" src="{{item.pics[0]}}?imageView2" bind:tap="toUrl" data-url="/pages/product/detail?id={{item.id}}"></image>
+      <view class="product-title bg-white padding-sm">{{item.title}}</view>
+      <view class="text-red padding-sm flex align-center">
+        <view class="flex-sub">
+          ¥<text class="text-bold text-xl">{{item.showPrice}}</text>
+        </view>
+        <text class="cuIcon-cart text-bold" bind:tap="addCart" data-id="{{item.id}}" data-pic="{{item.pics[0]}}" data-price="{{item.price}}" data-title="{{item.title}}"></text>
+      </view>
+    </view>
+  </view>
+  
+</view>
+<view class="cu-load footer-btns {{end?'over':'loading'}}" id="loading"></view>
+
+
+
+<tabBar selected="0"></tabBar>

@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/my",
+    "pages/cart/index",
+    "pages/product/detail",
+    "pages/comment/list",
+    "pages/order/cart-confirm",
+    "pages/deliveryAddress/list",
+    "pages/deliveryAddress/form",
+    "pages/order/product-confirm",
+    "pages/order/list",
+    "pages/index/info"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "春天照护商城",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/index/my"
+      },
+      {
+        "pagePath": "pages/cart/index"
+      }
+    ]
+  },
+  "usingComponents": {
+    "topTips": "/components/tips/index"
+  },
+  "networkTimeout": {
+    "request": 30000
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json",
+  "requiredPrivateInfos": [
+    "choosePoi",
+    "chooseLocation"
+  ]
+}

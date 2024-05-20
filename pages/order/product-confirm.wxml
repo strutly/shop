@@ -1,0 +1,46 @@
+<topTips errorShow="{{errorShow}}" errorMsg="{{errorMsg}}" errorType="{{errorType}}"></topTips>
+<wxs src="../../utils/tools.wxs" module="tools"></wxs>
+<view class="address-box flex padding bg-white align-center margin-top" bind:tap="toUrl" data-url="/pages/deliveryAddress/list?mode=check">
+	<block wx:if="{{address}}">
+		<view class="flex-sub">
+			<view class="text-bold">{{address.name}}<text class="margin-left">{{address.phone}}</text></view>
+			<view class="text-grey">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</view>
+		</view>
+		<text class="cuIcon-right"></text>
+	</block>
+	<view class="text-xxl" wx:else>
+		<text class="cuIcon-roundadd margin-right"></text>选择收件地址
+	</view>
+</view>
+<view class="cu-progress xs striped">
+	<view class="bg-green" style="width:100%"></view>
+</view>
+<view class="flex align-center bg-white solid-bottom padding">
+	<view class="flex flex-sub">
+		<image class="product-img" src="{{product.pics[0]}}?imageView2"></image>
+		<view class="margin-left-sm flex-sub flex flex-direction justify-between">
+			<view class="product-title">{{product.title}}</view>
+			<view class="flex margin-top-xs">
+				<view class="flex-sub text-orange">¥{{tools.showPrice(product.price)}}</view>
+				<view class="flex align-center text-xl radius-xl">
+					<view class="flex align-center text-xl radius-xl">
+            <text class="cuIcon-move bg-gray {{num>1?'':'text-grey'}}" bind:tap="{{num>1?'numChange':''}}" data-num="-1" ></text>
+            <view class="buy-num text-black bg-gray margin-lr-xs">{{num}}</view>
+            <text class="cuIcon-add bg-gray" bind:tap="numChange" data-num="1"></text>
+          </view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="flex padding bg-white">
+	<view class="flex-sub">商品总额</view>
+	<view class=""><text class="text-orange">¥{{tools.showPrice(sumPrice)}}</text></view>
+</view>
+<form bindsubmit="submit">
+	<input name="deliveryAddressId" hidden value="{{address.id}}"></input>
+	<view class="balance-box bg-white flex padding align-center">
+		<view class="flex-sub text-bold margin-left">总计:<text class="text-orange">{{tools.showPrice(sumPrice)}}</text></view>
+		<button class="cu-btn round padding-lr-xl bg-red" form-type="submit">支付</button>
+	</view>
+</form>

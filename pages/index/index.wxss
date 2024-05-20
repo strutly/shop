@@ -1,0 +1,27 @@
+/**index.wxss**/
+page {
+  background-color: var(--white);
+}
+
+.product-item {
+  
+}
+
+.product-pic {
+  width: 340rpx;
+  height: 340rpx;
+}
+
+.product-title {
+  flex-shrink: 0;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 400;
+  display: -webkit-box;
+  height: 72rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-word;
+  line-height: 36rpx;
+}

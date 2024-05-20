@@ -1,0 +1,36 @@
+<topTips errorShow="{{errorShow}}" errorMsg="{{errorMsg}}" errorType="{{errorType}}"></topTips>
+<view class="padding flex solid-bottom bg-white margin-top" wx:for="{{address}}">
+  <view class="flex-sub" bind:tap="{{options.mode=='check'?'chooseAddress':''}}" data-index="{{index}}">
+    <view class="text-bold"><text class="cuIcon-titles text-orange" wx:if="{{item.defaultFlag}}"></text>{{item.name}}<text class="margin-left">{{item.phone}}</text></view>
+    <view class="text-grey">{{item.province}}{{item.city}}{{item.district}}{{item.address}}</view>
+  </view>
+  <view class="margin-lr">
+    <view data-url="/pages/deliveryAddress/form?id={{item.id}}" bind:tap="toUrl"><text class="cuIcon-edit margin-right-xs"></text>编辑</view>
+    <view class="margin-top-sm text-red" data-id="{{item.id}}" bind:tap="delete"><text class="cuIcon-delete margin-right-xs"></text>删除</view>
+  </view>
+</view>
+<view class="padding-xs flex align-center" wx:if="{{address.length==0}}">
+  <view class="flex-sub text-center">
+    <view class="text-xsl padding">
+      <text class="cuIcon-info text-gray"></text>
+    </view>
+    <view class="padding">暂无收货地址</view>
+  </view>
+</view>
+<view class="footer flex  padding flex-direction text-center bg-white">
+  <view class="round bg-red padding cu-btn lg" bind:tap="toUrl" data-url="/pages/deliveryAddress/form?id=0">新建收货地址</view>
+
+</view>
+
+
+<view class="cu-modal bottom-modal show" wx:if="{{modaldelete}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" data-id="{{deleteId}}" bind:tap="yes">确定</view>
+      <view class="action text-blue" bind:tap="modalStatus" data-name="delete">取消</view>
+    </view>
+    <view class="padding-xl">
+      确认删除该地址吗?
+    </view>
+  </view>
+</view>

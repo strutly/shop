@@ -1,0 +1,37 @@
+/* pages/order/cart-confirm.wxss */
+.product-img{
+  width: 100rpx;
+  height: 100rpx;
+}
+.product-title{
+  flex-shrink: 0;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 400;
+  display: -webkit-box;
+  height: 72rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-word;
+  line-height: 36rpx;
+}
+
+.buy-num{
+  width: 80rpx;  
+  text-align: center;
+}
+.balance-box{
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom:0;
+}
+.check-all{
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius:50%;
+}

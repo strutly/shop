@@ -1,0 +1,59 @@
+<swiper class="screen-swiper square-dot" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{product.pics}}" catch:tap="viewImage" data-url="{{item}}" data-urls="{{product.pics}}" wx:key="index">
+    <image src="{{item}}" mode="aspectFill"></image>
+  </swiper-item>
+</swiper>
+<view class="padding bg-white">
+  {{product.title}}
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    商品评论(10)
+  </view>
+  <view class="action">
+    4.7<text class="cuIcon-right margin-left-sm text-gray"></text>
+  </view>
+</view>
+<view class="cu-list menu-avatar">
+  <block>
+    <view class="flex padding-sm align-center bg-white">
+      <image class="cu-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
+      <view class="flex-sub margin-left">
+        <view>卡尔</view>
+        <view class="text-sm">
+          <text class="cuIcon-favorfill text-yellow" wx:for="{{4}}"></text>
+          <text class="cuIcon-favor" wx:for="{{5-4}}"></text>
+        </view>
+      </view>
+    </view>
+    <view class="padding-sm bg-white solid-top text-sm">
+      这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好
+    </view>
+  </block>
+</view>
+<view class="padding margin-top bg-white footer-btns">
+  <view class="flex align-center margin-bottom">
+    <view class="flex-sub"></view>
+    <view class="flex-sub solids-bottom"></view>
+    <text class="margin-lr">商品详情</text>
+    <view class="flex-sub solids-bottom"></view>
+    <view class="flex-sub"></view>
+  </view>
+  <image catch:tap="viewImage" data-url="{{item}}" data-urls="{{product.detail}}" class="detail-image" src="{{item}}" wx:for="{{product.detail}}" mode="widthFix"></image>
+</view>
+<view class="footer flex padding text-xxl bg-white align-center solids-top text-center">
+  <view class="flex-sub flex">
+    <view class="flex-sub solid-right" data-url="/pages/index/index" bind:tap="switch">
+      <view class="cuIcon-home flex-sub"></view>
+      <view class="text-xs">首页</view>
+    </view>
+    <view class="flex-sub" data-url="/pages/cart/index" bind:tap="switch">
+      <view class="cuIcon-cart flex-sub"></view>
+      <view class="text-xs">购物车</view>
+    </view>
+  </view>
+  <view class="flex-twice flex text-center">
+    <view class="flex-sub bg-red light padding-tb-sm text-sm add-cart" bind:tap="addCart" data-id="{{product.id}}">加入购物车</view>
+    <view class="flex-sub bg-red padding-tb-sm text-sm buy" bind:tap="toUrl" data-url="/pages/order/product-confirm?id={{product.id}}" >立即购买</view>
+  </view>
+</view>

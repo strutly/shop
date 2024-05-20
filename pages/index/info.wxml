@@ -1,0 +1,28 @@
+<topTips errorShow="{{errorShow}}" errorMsg="{{errorMsg}}" errorType="{{errorType}}"></topTips>
+
+<view class="cu-form-group margin-top">
+	<text class="title" decode>昵&emsp;&emsp;称</text>
+	<input placeholder="昵称" bindblur="inputChange" data-name='nickName' value="{{userInfo.nickName}}"></input>
+</view>
+<view class="cu-form-group">
+	<text class="title" decode>头&emsp;&emsp;像</text>
+	<button class="cu-btn bg-white text-xl" open-type="chooseAvatar" bindchooseavatar="chooseAvatra">
+		<image class="head-img round" src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/images/head.png'}}"></image>
+		<text class="cuIcon-right text-grey margin-left-xs"></text>
+	</button>
+</view>
+<view class="cu-form-group">
+	<text class="title" decode>性&emsp;&emsp;别</text>
+	<picker bindchange="pickerChange" data-type="gender" range-key="title" name="gender" value="{{userInfo.gender}}" range="{{sexArr}}">
+		<view class="picker text-left">
+			{{userInfo.gender!=null?(userInfo.gender==1?'男':'女'):'请选择性别'}}
+		</view>
+	</picker>
+</view>
+<view class="cu-form-group solid-bottom">
+	<text class="title" decode>手&ensp;机&ensp;号</text>
+	<button class="cu-btn bg-white text-xl" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+		<input class="text-right" placeholder="手机号" name="phone" disabled="true" value="{{userInfo.phone}}"></input>
+		<text class="cuIcon-right text-grey margin-left-xs"></text>
+	</button>
+</view>

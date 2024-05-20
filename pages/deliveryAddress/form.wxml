@@ -1,0 +1,39 @@
+<topTips errorShow="{{errorShow}}" errorMsg="{{errorMsg}}" errorType="{{errorType}}"></topTips>
+<form bindsubmit="submit">
+  <input name="id" hidden="true" value="{{address.id}}"></input>
+  <input name="province" hidden="true" value="{{address.province}}"></input>
+  <input name="city" hidden="true" value="{{address.city}}"></input>
+  <input name="district" hidden="true" value="{{address.district}}"></input>
+
+  <view class="cu-form-group margin-top">
+    <text class="title" decode>姓&emsp;&emsp;名</text>
+    <input placeholder="姓名" bindblur="inputChange" data-name='address.name' name="name" value="{{address.name}}"></input>
+  </view>
+  <view class="cu-form-group">
+    <text class="title" decode>手&ensp;机&ensp;号</text>
+    <input placeholder="手机号" name="phone" bindblur="inputChange" data-name='address.phone' value="{{address.phone}}"></input>
+
+  </view>
+  <view class="cu-form-group">
+    <text class="title" decode>省&ensp;市&ensp;区</text>
+    <picker mode="region" bindchange="regionChange">
+      <view class="picker">
+        {{address.city?address.province+'/'+address.city+'/'+address.district:'请选择省市区'}}
+      </view>
+    </picker>
+  </view>
+
+
+  <view class="cu-form-group align-start">
+    <view class="title">详细地址</view>
+    <textarea maxlength="-1" bindblur="inputChange" data-name='address.address' name="address" placeholder="详细地址" value="{{address.address}}"></textarea>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">默认地址</view>
+    <switch class='red round' name="defaultFlag" value="{{address.defaultFlag}}" bindchange="defaultFlagChange" checked="{{address.defaultFlag}}"></switch>
+  </view>
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-red margin-tb-sm lg" form-type="submit">保存</button>
+  </view>
+</form>

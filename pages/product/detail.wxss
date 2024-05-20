@@ -1,0 +1,11 @@
+/* pages/product/detail.wxss */
+.detail-image{
+  display:flex;
+  width: 100%;
+}
+.add-cart{
+  border-radius: 50rpx 0 0 50rpx;
+}
+.buy{
+  border-radius: 0 50rpx 50rpx 0;
+}

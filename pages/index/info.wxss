@@ -1,0 +1,12 @@
+/* pages/index/info.wxss */
+.head-img{
+	width: 80rpx;
+	height: 80rpx;
+}
+.cu-btn{
+	border:unset;
+	padding: 0;
+}
+.text-right{
+	text-align: right;
+}

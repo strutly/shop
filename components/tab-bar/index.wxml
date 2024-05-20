@@ -1,0 +1,21 @@
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action {{selected==0?'text-orange':''}}" bindtap="switch" data-url="/pages/index/index">
+    <view class='cuIcon-cu-image'>
+      <text class="cuIcon-home"></text>
+    </view>
+    <view>首页</view>
+  </view>
+  <view class="action {{selected==1?'text-orange':''}}" bindtap="switch" data-url="/pages/cart/index">
+    <view class='cuIcon-cu-image'>
+      <text class="cuIcon-cart"></text>
+    </view>
+    <view>购物车</view>
+  </view>
+  <view class="action {{selected==2?'text-orange':''}}" bindtap="switch" data-url="/pages/index/my">
+    <view class='cuIcon-cu-image'>
+      <text class="cuIcon-my"></text>
+    </view>
+    <view :class="PageCur=='basics'?'text-green':'text-gray'">个人中心</view>
+  </view>
+
+</view>
