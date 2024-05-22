@@ -15,3 +15,11 @@
   word-break: break-word;
   line-height: 36rpx;
 }
+
+.buy-num{
+  width: 80rpx;  
+  text-align: center;
+}
+.cu-form-group+.cu-form-group {
+  border-top: unset;
+}

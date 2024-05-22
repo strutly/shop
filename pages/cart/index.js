@@ -76,5 +76,19 @@ CustomPage({
       carts:userCart
     })
     that.updatePrice();
+  },
+  checkAll(e){
+    let checkAll = that.data.checkAll;
+    
+    let userCart = that.data.carts;
+    console.log(userCart)
+    Object.keys(userCart).forEach(key=>{
+      userCart[key].check = !checkAll;
+    })
+    that.setData({
+      checkAll:!checkAll,
+      carts:userCart
+    })
+    that.updatePrice();
   }
 })

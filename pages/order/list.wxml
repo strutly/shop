@@ -1,2 +1,83 @@
-<!--pages/order/list.wxml-->
-<text>pages/order/list.wxml</text>
+<topTips errorShow="{{errorShow}}" errorMsg="{{errorMsg}}" errorType="{{errorType}}"></topTips>
+<wxs src="../../utils/tools.wxs" module="tools"></wxs>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation>
+  <view class="cu-item {{index==tabIndex?'text-green cur':''}}" wx:for="{{navs}}" wx:key="index" bindtap="tabSelect" data-index="{{index}}" data-status="{{item.status}}">
+    {{item.title}}
+  </view>
+</scroll-view>
+<view class="padding bg-white margin-top" wx:for="{{orders[tabIndex]}}" wx:key="index">
+  <view class="flex">
+    <view class="flex-sub">订单号:{{item.outTradeNo}}</view>
+    <view class="text-red">{{item.status.value}}</view>
+  </view>
+  <view class="flex align-center margin-top" wx:for="{{item.des.data}}" wx:for-item="product" wx:key="product" data-url="/pages/product/detail?id={{product.id}}" bind:tap="toUrl">
+    <view class="flex flex-sub">
+      <image class="product-img" src="{{product.pic}}?imageView2"></image>
+      <view class="margin-left-sm flex-sub flex flex-direction justify-between">
+        <view class="product-title">{{product.title}}</view>
+        <view class="flex margin-top-xs">
+          <view class="flex-sub text-orange">¥{{tools.showPrice(product.price)}}</view>
+          <view class="buy-num margin-lr-xs"><text class="text-sm text-gray">X</text>{{product.num}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="flex margin-top" bind:tap="copy" data-tnum="{{item.trackingNum}}" wx:if="{{item.trackingNum}}">
+    <view class="flex-sub">快递单号</view>
+    <view class="text-red">{{item.trackingNum}}</view>
+    <text class="cuIcon-right"></text>
+  </view>
+  <view class="flex margin-top" wx:if="{{item.trackingName}}">
+    <view class="flex-sub">快递商名称</view>
+    <view class="text-red">{{item.trackingName}}</view>
+  </view>
+  <view class="flex margin-top" wx:if="{{item.payTime}}">
+    <view class="flex-sub">支付时间</view>
+    <view class="text-red">{{item.payTime}}</view>
+  </view>
+
+
+  <view class="text-right">总价¥{{tools.showPrice(item.totalFee)}}</view>
+  <view class="flex justify-end margin-top">
+    <view class="cu-btn round sm line-gray" bind:tap="update" data-status="CANCEL" data-id="{{item.id}}" wx:if="{{item.status.code==0}}">取消订单</view>
+    <view class="cu-btn round bg-red sm margin-left" bind:tap="pay" data-index="{{index}}" data-id="{{item.id}}" wx:if="{{item.status.code==0}}">付款</view>
+
+    <view class="cu-btn round line-grey sm margin-left" bind:tap="refund" data-out-trade-no="{{item.outTradeNo}}" data-total-fee="{{item.totalFee}}" wx:if="{{item.status.code==1}}">申请退款</view>
+
+    <view class="cu-btn round bg-red sm margin-left" bind:tap="update" data-status="COMMENT" data-id="{{item.id}}" wx:if="{{item.status.code==5}}">确认收货</view>
+
+    <view class="cu-btn round bg-red sm margin-left" bind:tap="toUrl" data-url="/pages/comment/form?id={{item.id}}" data-index="{{index}}" data-id="{{item.id}}" wx:if="{{item.status.code==6}}">评论</view>
+  </view>
+</view>
+
+
+
+<view class="cu-load footer-btns {{end?'over':'loading'}}" id="loading"></view>
+
+
+<view class="cu-modal {{modalrefund?'show':''}}">
+<form bindsubmit="submit">
+  <input name="outTradeNo" hidden value="{{outTradeNo}}"></input>
+  <view class="cu-dialog sm">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">退款申请</view>
+    </view>
+    <view class="text-left">
+      <view class="cu-form-group">
+        <view class="title">退款金额</view>
+        <input placeholder="退款金额({{tools.showPrice(totalFee)}})" value="{{tools.showPrice(totalFee)}}" name="amount" max="{{tools.showPrice(totalFee)}}" type="number"></input>
+      </view>
+      <view class="cu-form-group align-start">
+				<view class="title">退款原因</view>
+				<textarea name="reason" maxlength="-1" placeholder="退款原因"></textarea>
+			</view>
+    </view>
+    <view class="cu-bar bg-white solids-top justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bind:tap="modalStatus" data-name="refund">取消</button>
+        <button class="cu-btn bg-green margin-left" form-type="submit">提交</button>
+      </view>
+    </view>
+  </view>
+</form>
+</view>

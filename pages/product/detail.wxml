@@ -6,28 +6,31 @@
 <view class="padding bg-white">
   {{product.title}}
 </view>
-<view class="cu-bar bg-white solid-bottom margin-top">
+<view class="cu-bar bg-white solid-bottom margin-top" bind:tap="toUrl" data-url="/pages/comment/list?id={{product.id}}">
   <view class="action">
-    商品评论(10)
+    商品评论({{product.score.size}})
   </view>
   <view class="action">
-    4.7<text class="cuIcon-right margin-left-sm text-gray"></text>
+    {{product.score.score}}<text class="cuIcon-right margin-left-sm text-gray"></text>
   </view>
 </view>
 <view class="cu-list menu-avatar">
-  <block>
+  <block wx:for="{{product.comments}}" wx:for-item="comment">
     <view class="flex padding-sm align-center bg-white">
-      <image class="cu-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
-      <view class="flex-sub margin-left">
-        <view>卡尔</view>
-        <view class="text-sm">
-          <text class="cuIcon-favorfill text-yellow" wx:for="{{4}}"></text>
-          <text class="cuIcon-favor" wx:for="{{5-4}}"></text>
+      <image class="cu-avatar round" src="{{comment.userInfo.avatarUrl||'/images/head.png'}}"></image>
+      <view class="flex-sub margin-left flex">
+        <view class="flex-sub">
+          <view>{{comment.userInfo.nickName||'匿名用户'}}</view>
+          <view class="text-sm">
+            <text class="cuIcon-favorfill text-yellow" wx:for="{{comment.rating - 0}}" wx:key="unique"></text>
+            <text class="cuIcon-favor" wx:for="{{5-comment.rating}}" wx:key="unique"></text>
+          </view>
         </view>
+        <view>{{comment.createTime}}</view>
       </view>
     </view>
     <view class="padding-sm bg-white solid-top text-sm">
-      这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好这个商品很好
+      {{comment.comment||'好评'}}
     </view>
   </block>
 </view>
@@ -53,7 +56,7 @@
     </view>
   </view>
   <view class="flex-twice flex text-center">
-    <view class="flex-sub bg-red light padding-tb-sm text-sm add-cart" bind:tap="addCart" data-id="{{product.id}}">加入购物车</view>
-    <view class="flex-sub bg-red padding-tb-sm text-sm buy" bind:tap="toUrl" data-url="/pages/order/product-confirm?id={{product.id}}" >立即购买</view>
+    <view class="flex-sub bg-red light padding-tb-sm text-sm add-cart" bind:tap="addCart" data-id="{{product.id}}" data-id="{{product.id}}" data-pic="{{product.pics[0]}}" data-price="{{product.price}}" data-title="{{product.title}}">加入购物车</view>
+    <view class="flex-sub bg-red padding-tb-sm text-sm buy" bind:tap="toUrl" data-url="/pages/order/product-confirm?id={{product.id}}">立即购买</view>
   </view>
 </view>

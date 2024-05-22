@@ -1,6 +1,6 @@
 <topTips errorShow="{{errorShow}}" errorMsg="{{errorMsg}}" errorType="{{errorType}}"></topTips>
 <view class="padding flex solid-bottom bg-white margin-top" wx:for="{{address}}">
-  <view class="flex-sub" bind:tap="{{options.mode=='check'?'chooseAddress':''}}" data-index="{{index}}">
+  <view class="flex-sub" bind:tap="{{options.mode=='check'?'chooseAddress':'toUrl'}}" data-url="/pages/deliveryAddress/form?id={{item.id}}" data-index="{{index}}">
     <view class="text-bold"><text class="cuIcon-titles text-orange" wx:if="{{item.defaultFlag}}"></text>{{item.name}}<text class="margin-left">{{item.phone}}</text></view>
     <view class="text-grey">{{item.province}}{{item.city}}{{item.district}}{{item.address}}</view>
   </view>

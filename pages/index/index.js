@@ -13,17 +13,6 @@ CustomPage({
   onShow() {
     getApp().watch(function (value) {
       console.log(value);
-      wx.removeStorageSync('code');
-      if (value.login && value.auth) {
-        that.getHomeData();
-      } else if (!value.auth) {
-        that.showTips(value.msg);
-        that.setData({
-          modalauth: true
-        })
-      } else {
-        that.showTips(value.msg);
-      }
     })
   },
   onReady() {

@@ -1,2 +1,36 @@
-<!--pages/comment/list.wxml-->
-<text>pages/comment/list.wxml</text>
+<view class="cu-list menu-avatar">
+  <block wx:for="{{comments}}" wx:for-item="comment" wx:key="index">
+    <view class="flex padding-sm align-center bg-white margin-top">
+      <image class="cu-avatar round" src="{{comment.userInfo.avatarUrl||'/images/head.png'}}"></image>
+      <view class="flex-sub margin-left flex">
+        <view class="flex-sub">
+          <view>{{comment.userInfo.nickName||'匿名用户'}}</view>
+          <view class="text-sm">
+            <text class="cuIcon-favorfill text-yellow" wx:for="{{comment.rating - 0}}" wx:key="unique"></text>
+            <text class="cuIcon-favor" wx:for="{{5-comment.rating}}" wx:key="unique"></text>
+          </view>
+        </view>
+        <view>{{comment.createTime}}</view>
+      </view>
+    </view>
+    <view class="padding-sm bg-white solid-top text-sm">
+      {{comment.comment||'好评'}}
+    </view>
+    <view class="cu-form-group solid-top" wx:if="{{comment.pics.length>0}}">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{comment.pics}}" wx:for-item="pic" wx:for-index="i" wx:key="index">
+          <image src="{{pic}}?imageView2" mode="aspectFill" bind:tap="viewImage" data-url="{{pic}}" data-urls="{{comment.pics}}"></image>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="padding-xs flex align-center" wx:if="{{comments.length==0}}">
+  <view class="flex-sub text-center">
+    <view class="text-xsl padding">
+      <text class="cuIcon-info text-gray"></text>
+    </view>
+    <view class="padding">暂无评论</view>
+  </view>
+</view>

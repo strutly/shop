@@ -9,41 +9,43 @@
     <text class="cuIcon-right"></text>
   </view>
 </view>
-<view class="cu-list menu margin-top">
-  <view class="cu-item ">
-    <view class="content">
-      <text class="cuIcon-info"></text>
-      接单状态
-    </view>
-    <view>
-      <switch bindchange="statusChange" checked="{{userInfo.orderStatus==0}}"></switch>
-    </view>
+<view class="cu-bar bg-white margin-top" bind:tap="toUrl" data-url="/pages/order/list">
+  <view class="action">
+    我的订单
   </view>
-  <view class="cu-item arrow">
-    <view class="content">
-      <text class="cuIcon-service"></text>
-      派遣管理
-    </view>
+  <view class="action">
+    全部订单<text class="cuIcon-right"></text>
   </view>
-  <view class="cu-item arrow" bind:tap="toUrl" data-url="/pages/consumer/list">
-    <view class="content">
-      <text class="cuIcon-friend"></text>
-      照护对象管理
-    </view>
-  </view>
-  <view class="cu-item arrow">
-    <view class="content">
+</view>
+<view class="flex padding solid-top text-center bg-white">
+  <view class="flex-sub" bind:tap="toUrl" data-url="/pages/order/list?tabIndex=1">
+    <view class="text-xxl" style="position: relative;">
       <text class="cuIcon-pay"></text>
-      收入管理
+     
     </view>
+    <view>待付款</view>
   </view>
-  <view class="cu-item arrow">
-    <view class="content">
-      <text class="cuIcon-rank"></text>
-      统计信息
-    </view>
+  <view class="flex-sub" bind:tap="toUrl" data-url="/pages/order/list?tabIndex=2">
+    <view class="text-xxl"><text class="cuIcon-deliver"></text></view>
+    <view>待发货</view>
+  </view>
+  <view class="flex-sub" bind:tap="toUrl" data-url="/pages/order/list?tabIndex=3">
+    <view class="text-xxl"><text class="cuIcon-send"></text></view>
+    <view>待收货</view>
+  </view>
+  <view class="flex-sub" bind:tap="toUrl" data-url="/pages/order/list?tabIndex=5">
+    <view class="text-xxl"><text class="cuIcon-refund"></text></view>
+    <view>退款</view>
   </view>
 </view>
 
-<tabBar selected="1"></tabBar>
+<view class="cu-bar bg-white margin-top" bind:tap="toUrl" data-url="/pages/deliveryAddress/list">
+  <view class="action">
+    收货地址
+  </view>
+  <view class="action">
+    <text class="cuIcon-right"></text>
+  </view>
+</view>
+
 <tabBar selected="2"></tabBar>
