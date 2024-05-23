@@ -17,19 +17,19 @@ CustomPage({
     let rules = {
       amount: {
         required: true,
-        min:0.01
-      },      
+        min: 0.01
+      },
       reason: {
-        required:true
+        required: true
       }
     }, messages = {
       amount: {
         required: "请输入退款金额",
-        min:"金额错误"
-      },      
+        min: "金额错误"
+      },
       reason: {
-        required:"请输入退款原因"
-      }      
+        required: "请输入退款原因"
+      }
     };
     that.WxValidate = new WxValidate(rules, messages);
   },
@@ -37,10 +37,10 @@ CustomPage({
     that.setData({
       tabIndex: that.data.options.tabIndex || 0
     })
-    that.observe();
+
   },
   onShow() {
-
+    that.observe();
   },
   observe() {
     IntersectionObserver = wx.createIntersectionObserver().relativeToViewport({ bottom: 20 });
@@ -99,7 +99,7 @@ CustomPage({
     pageNums[tabIndex] = 0;
     that.setData({
       orders: orders,
-      pageNums:pageNums,
+      pageNums: pageNums,
       end: false
     })
     that.observe();
@@ -127,22 +127,22 @@ CustomPage({
     })
   },
   update(e) {
-    Api.orderStatus({...e.currentTarget.dataset }).then(res => {
+    Api.orderStatus({ ...e.currentTarget.dataset }).then(res => {
       that.showTips("操作成功", "success");
       that.reload();
     }, err => {
       that.showTips(err.msg);
     })
   },
-  refund(e){
+  refund(e) {
     console.log(e);
     that.setData({
-      modalrefund:true,
+      modalrefund: true,
       ...e.currentTarget.dataset
-      
+
     })
   },
-  submit(e){
+  submit(e) {
     let data = e.detail.value;
     if (!that.WxValidate.checkForm(data)) {
       console.log(that.WxValidate)
@@ -150,14 +150,14 @@ CustomPage({
       that.showTips(error.msg)
       return false;
     }
-    Api.orderRefund(data).then(res=>{
+    Api.orderRefund(data).then(res => {
       console.log(res);
       that.setData({
-        modalrefund:false
+        modalrefund: false
       })
-      that.showTips(res.msg,"success");
+      that.showTips(res.msg, "success");
       that.reload();
-    },err=>{
+    }, err => {
       that.showTips(err.msg);
     })
   }
