@@ -3,7 +3,7 @@
   <image class="round head-img" src="{{userInfo.avatarUrl||'/images/head.png'}}"></image>
   <view class="flex-sub margin-left">
     <view class="">{{userInfo.nickName||'未知'}}</view>
-    <view class="margin-top-sm">{{userInfo.phone}}</view>
+    <view class="margin-top-sm">{{userInfo.phone||''}}</view>
   </view>
   <view class=" text-xxl">
     <text class="cuIcon-right"></text>

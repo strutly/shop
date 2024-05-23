@@ -14,7 +14,7 @@
   <view class="padding radius-xl" wx:for="{{items}}" wx:key="item">
     <view class="product-item bg-white">
       <image mode="heightFix" class="product-pic" src="{{item.pics[0]}}?imageView2" bind:tap="toUrl" data-url="/pages/product/detail?id={{item.id}}"></image>
-      <view class="product-title bg-white padding-sm">{{item.title}}</view>
+      <view class="product-title bg-white padding-lr-sm">{{item.title}}</view>
       <view class="text-red padding-sm flex align-center">
         <view class="flex-sub">
           ¥<text class="text-bold text-xl">{{item.showPrice}}</text>
