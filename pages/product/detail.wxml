@@ -32,6 +32,11 @@
     <view class="padding-sm bg-white solid-top text-sm">
       {{comment.comment||'好评'}}
     </view>
+    <view class="grid col-5 bg-white padding-sm grid-square flex-sub" wx:if="{{comment.pics.length>0}}">
+      <view class="bg-img" wx:for="{{comment.pics}}" wx:for-item="pic" wx:for-index="i" wx:key="index">
+        <image src="{{pic}}?imageView2" mode="aspectFill" bind:tap="viewImage" data-url="{{pic}}" data-urls="{{comment.pics}}"></image>
+      </view>
+    </view>
   </block>
 </view>
 <view class="padding margin-top bg-white footer-btns">

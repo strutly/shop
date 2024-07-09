@@ -44,5 +44,9 @@
   "requiredPrivateInfos": [
     "choosePoi",
     "chooseLocation"
-  ]
+  ],
+  "logisticsPlugin": {
+    "version": "2.1.5",
+    "provider": "wx9ad912bf20548d92"
+  }
 }

@@ -16,11 +16,9 @@
     <view class="padding-sm bg-white solid-top text-sm">
       {{comment.comment||'好评'}}
     </view>
-    <view class="cu-form-group solid-top" wx:if="{{comment.pics.length>0}}">
-      <view class="grid col-4 grid-square flex-sub">
-        <view class="bg-img" wx:for="{{comment.pics}}" wx:for-item="pic" wx:for-index="i" wx:key="index">
-          <image src="{{pic}}?imageView2" mode="aspectFill" bind:tap="viewImage" data-url="{{pic}}" data-urls="{{comment.pics}}"></image>
-        </view>
+    <view class="padding-lr-sm grid bg-white col-4 grid-square flex-sub" wx:if="{{comment.pics.length>0}}">
+      <view class="bg-img" wx:for="{{comment.pics}}" wx:for-item="pic" wx:for-index="i" wx:key="index">
+        <image src="{{pic}}?imageView2" mode="aspectFill" bind:tap="viewImage" data-url="{{pic}}" data-urls="{{comment.pics}}"></image>
       </view>
     </view>
   </block>

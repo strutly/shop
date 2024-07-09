@@ -5,6 +5,7 @@ CustomPage({
   data: {
     num: 0,
     tabIndex: 0,
+    title:""
 
   },
   onLoad() {
@@ -51,6 +52,7 @@ CustomPage({
     let pageNums = that.data.pageNums;
     let products = that.data.products;
     Api.getProductList({
+      title:that.data.title,
       pageNum:++pageNums[tabIndex],
       categoryId:categories[tabIndex].id,
       pageSize:10
@@ -90,5 +92,19 @@ CustomPage({
       icon:'none'
     })
 
+  },
+  search(e){
+    let tabIndex = that.data.tabIndex;
+    let pageNums = that.data.pageNums;
+    let products = that.data.products;
+    products[tabIndex] = [];
+    pageNums[tabIndex] = 0;
+    that.setData({
+      title:e.detail.value,
+      products:products,
+      pageNums:pageNums,
+      end:false
+    })
+    that.observe();
   }
 })
